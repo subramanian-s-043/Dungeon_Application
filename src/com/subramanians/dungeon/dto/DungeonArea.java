@@ -7,11 +7,13 @@ public class DungeonArea {
 	private int[] monsterPoint;
 	private int[] triggerPoint;
 	private int[][] pitPos;
-	public DungeonArea(int[][] area,int[] startPoint,int[] goldPoint,int[][] pitPos) {
+	
+	public DungeonArea(int[][] area,int[] startPoint,int[] goldPoint,int[][] pitPos,int[] mons) {
 		this.dungeonArea=area;
 		this.adventurePoint=startPoint;
 		this.goldPoint=goldPoint;
 		this.pitPos=pitPos;
+		this.monsterPoint=mons;
 	}
 	
 	public int[][] getPitPos() {

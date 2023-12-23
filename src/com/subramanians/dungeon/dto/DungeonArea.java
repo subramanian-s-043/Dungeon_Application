@@ -5,15 +5,23 @@ public class DungeonArea {
 	private int[] adventurePoint;
 	private int[] goldPoint;
 	private int[] monsterPoint;
+	private int[] triggerPoint;
 
-	
-	public DungeonArea(int[][] area,int[] startPoint,int[] goldPoint,int[] monsterPoint) {
+	public DungeonArea(int[][] area,int[] startPoint,int[] goldPoint,int[] monsterPoint,int[] triggerPoint) {
 		this.dungeonArea=area;
 		this.adventurePoint=startPoint;
 		this.goldPoint=goldPoint;
 		this.monsterPoint=monsterPoint;
+		this.triggerPoint=triggerPoint;
 	}
 	
+	public int[] getTriggerPoint() {
+		return triggerPoint;
+	}
+
+	public void setTriggerPoint(int[] triggerPoint) {
+		this.triggerPoint = triggerPoint;
+	}
 	public int[] getMonsterPoint() {
 		return monsterPoint;
 	}

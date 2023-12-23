@@ -14,24 +14,25 @@ public class LevelViewModel {
 			this.levelView=levelView;
 		}
 		
-		public void createDungeonArea(int row,int col,int adRow,int adCol,int golRow,int golCol,int monRow,int monCol) {
-			area=new DungeonArea(new int[row][col],new int[]{adRow,adCol},new int[]{golRow,golCol},new int[] {monRow,monCol});
+		public void createDungeonArea(int row,int col,int adRow,int adCol,int golRow,int golCol,int monRow,int monCol,int trigRow,int trigCol) {
+			area=new DungeonArea(new int[row][col],new int[]{adRow,adCol},new int[]{golRow,golCol},new int[] {monRow,monCol},new int[] {trigRow,trigCol});
 		}
 
 		public void findShorestPath() {
 			int[] adPos=area.getAdventurePoint();
 			int[] golPos=area.getGoldPoint();
+			int[] trigPos=area.getTriggerPoint();
 			int[] monsPos=area.getMonsterPoint();
 			int monsterSteps=Math.abs(monsPos[0]-golPos[0])+Math.abs(monsPos[1]-golPos[1]);
 			int adventureSteps=Math.abs(adPos[0]-golPos[0])+Math.abs(adPos[1]-golPos[1]);
-			
+			int adToTrigger=Math.abs(adPos[0]-trigPos[0])+Math.abs(adPos[1]-trigPos[1]);
+			int triggToGol=Math.abs(trigPos[0]-golPos[0])+Math.abs(trigPos[1]-golPos[1]);
 			if((adventureSteps)<=(monsterSteps)) {
-				levelView.showPath((Math.abs(adPos[0]-golPos[0])+Math.abs(adPos[1]-golPos[1])));
+				levelView.showPath(adventureSteps);
 				findMonsterPath(golPos,monsPos,monsterSteps+1);
 				findAdventurePath(golPos,adPos,adventureSteps+1);
-				printPath(monsterSteps,adventureSteps);
 			}else {
-				levelView.printMsg("No Possible Solution");
+				levelView.showPath(adToTrigger+triggToGol);
 			}
 		}
 

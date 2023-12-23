@@ -24,7 +24,10 @@ public class LevelView {
 		System.out.println("Enter the Monster Point: ");
 		int monsRow=scanner.nextInt();
 		int monsCol=scanner.nextInt();
-		levelviewModel.createDungeonArea(rows,column,adventureRow,adventureColumn,goldRow,goldCol,monsRow,monsCol);
+		System.out.println("Enter the trigger Point: ");
+		int triggRow=scanner.nextInt();
+		int triggCol=scanner.nextInt();
+		levelviewModel.createDungeonArea(rows,column,adventureRow,adventureColumn,goldRow,goldCol,monsRow,monsCol,triggRow,triggCol);
 		levelviewModel.findShorestPath();
 	}
 

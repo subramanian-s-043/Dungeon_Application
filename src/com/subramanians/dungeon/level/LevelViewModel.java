@@ -14,8 +14,8 @@ public class LevelViewModel {
 			this.levelView=levelView;
 		}
 		
-		public void createDungeonArea(int row,int col,int adRow,int adCol,int golRow,int golCol,int monRow,int monCol,int trigRow,int trigCol) {
-			area=new DungeonArea(new int[row][col],new int[]{adRow,adCol},new int[]{golRow,golCol},new int[] {monRow,monCol},new int[] {trigRow,trigCol});
+		public void createDungeonArea(int row,int col,int adRow,int adCol,int golRow,int golCol,int[][] pitPos) {
+			area=new DungeonArea(new int[row][col],new int[]{adRow,adCol},new int[]{golRow,golCol},pitPos);
 		}
 
 		public void findShorestPath() {
@@ -36,6 +36,50 @@ public class LevelViewModel {
 			}
 		}
 
+		public void findPath() {
+			int[][] entireArea=area.getDungeonArea();
+			int[][] pitPos=area.getPitPos();
+			int[] adPos=area.getAdventurePoint();
+			int[] golPos=area.getGoldPoint();
+			int count=0;
+			for(int i=0;i<pitPos.length;i++) {
+				entireArea[pitPos[i][0]-1][pitPos[i][1]-1]=1;
+			}
+			if(adPos[1]<golPos[1]) {
+				for(int i=adPos[1]-1;i<golPos[1];) {
+					if(entireArea[adPos[0]-1][i+1]!=1) {
+						count++;
+						i++;
+					}else if(entireArea[adPos[0]-2][i]!=1) {
+						adPos[0]--;
+						count++;
+					}else if(entireArea[adPos[0]][i]!=1) {
+						adPos[0]++;
+						count++;
+					}else {
+						levelView.printMsg("No Possible Solutions.");
+						break;
+					}
+				}
+			}
+			
+			
+			if(adPos[0]<golPos[0]) {
+				for(int i=adPos[0]-1;i>golPos[0];) {
+					if(entireArea[i-1][adPos[1]-1]!=1) {
+						count++;
+						i--;
+					}else if(entireArea[i][adPos[1]]!=1) {
+						i=entireArea[i][adPos[1]];
+						count++;
+					}
+				}
+			}
+			
+			
+			levelView.showPath(count);
+		}
+		
 		private void printPath(int monsterSteps,int adventureSteps) {
 			if(adventureSteps<monsterSteps) {
 				levelView.printPath(adventurePaths);

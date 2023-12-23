@@ -1,5 +1,6 @@
 package com.subramanians.dungeon.level;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class LevelView {
@@ -34,6 +35,13 @@ public class LevelView {
 
 	public void printMsg(String string) {
 		System.out.println(string);
+		
+	}
+
+	public void printPath(List<List<Integer>> adventurePaths) {
+		for(List<Integer> temp: adventurePaths) {
+			System.out.print("["+temp.get(0)+","+temp.get(1)+"]"+"->");
+		}
 		
 	}
 	

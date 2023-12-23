@@ -20,12 +20,21 @@ public class LevelView {
 		System.out.println("Enter the Gold Point: ");
 		int goldRow=scanner.nextInt();
 		int goldCol=scanner.nextInt();
-		levelviewModel.createDungeonArea(rows,column,adventureRow,adventureColumn,goldRow,goldCol);
+		System.out.println("Enter the Monster Point: ");
+		int monsRow=scanner.nextInt();
+		int monsCol=scanner.nextInt();
+		levelviewModel.createDungeonArea(rows,column,adventureRow,adventureColumn,goldRow,goldCol,monsRow,monsCol);
 		levelviewModel.findShorestPath();
 	}
 
+	
 	public void showPath(int minimumPath) {
 		System.out.println("Minimum Number Of Steps: "+ minimumPath);		
+	}
+
+	public void printMsg(String string) {
+		System.out.println(string);
+		
 	}
 	
 }

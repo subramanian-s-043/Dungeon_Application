@@ -24,9 +24,9 @@ public class LevelView {
 		System.out.println("Enter the Monster Point: ");
 		int monsRow=scanner.nextInt();
 		int monsCol=scanner.nextInt();
-/*		System.out.println("Enter the trigger Point: ");
+		System.out.println("Enter the trigger Point: ");
 		int triggRow=scanner.nextInt();
-		int triggCol=scanner.nextInt();*/
+		int triggCol=scanner.nextInt();
 		System.out.println("Enter Number of Pits: ");
 		int pits=scanner.nextInt();
 		int[][] pitPos=new int[pits][2];
@@ -35,7 +35,7 @@ public class LevelView {
 			pitPos[i][0]=scanner.nextInt();
 			pitPos[i][1]=scanner.nextInt();
 		}
-		levelviewModel.createDungeonArea(rows,column,adventureRow,adventureColumn,goldRow,goldCol,pitPos,monsRow,monsCol);
+		levelviewModel.createDungeonArea(rows,column,adventureRow,adventureColumn,goldRow,goldCol,pitPos,monsRow,monsCol,triggRow,triggCol);
 		levelviewModel.findShorestPath();
 //		levelviewModel.findPath();
 	}
